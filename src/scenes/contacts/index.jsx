@@ -4,17 +4,18 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import { useUsers } from "../../hooks/useUsers";
 
 const Contacts = () => {
   const theme = useTheme();
+  const users = useUsers();
   const colors = tokens(theme.palette.mode);
-
+  console.log(users);
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "firstName",
+      headerName: "First Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -46,8 +47,8 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "postalCode",
+      headerName: "Post Code",
       flex: 1,
     },
   ];
@@ -90,11 +91,13 @@ const Contacts = () => {
           },
         }}
       >
-        <DataGrid
-          rows={mockDataContacts}
-          columns={columns}
-          components={{ Toolbar: GridToolbar }}
-        />
+        {users && (
+          <DataGrid
+            rows={users}
+            columns={columns}
+            components={{ Toolbar: GridToolbar }}
+          />
+        )}
       </Box>
     </Box>
   );

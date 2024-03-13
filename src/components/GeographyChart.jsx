@@ -29,7 +29,7 @@ const GeographyChart = ({ isDashboard = false }) => {
               strokeWidth: 1,
             },
             text: {
-              dill: colors.grey[100],
+              fill: colors.grey[100],
             },
           },
         },
